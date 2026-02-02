@@ -174,7 +174,7 @@ export default function App() {
             </div>
             <div className="flex flex-col">
               <span className="text-lg md:text-xl font-black tracking-[0.15em] uppercase text-white font-mono flex items-center gap-2">
-                CHRONOS <span className="text-cyan-500 text-[8px] md:text-[10px] bg-cyan-950/50 px-1 border border-cyan-500/30 rounded">V.3.5</span>
+                Time Travel <span className="text-cyan-500 text-[8px] md:text-[10px] bg-cyan-950/50 px-1 border border-cyan-500/30 rounded">V.3.5</span>
               </span>
               <div className="flex items-center gap-2">
                 <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
@@ -258,13 +258,13 @@ export default function App() {
                  Archivage_Temporel // Stabilite_Systeme: 100%
                </p>
             </div>
-            <p className="text-[9px] text-zinc-800 font-mono">CHRONOS_LABS_INC // GENEVA_04</p>
+            <p className="text-[9px] text-zinc-800 font-mono">Time Travel_LABS_INC // GENEVA_04</p>
           </div>
           <div className="flex gap-8 items-center text-[10px] font-mono uppercase text-zinc-500">
              <button className="hover:text-cyan-500 transition-colors">Politique_Paradoxe</button>
              <button className="hover:text-cyan-500 transition-colors">Termes_Synchronisation</button>
           </div>
-          <p className="text-[10px] text-zinc-700 font-mono">CHRONOS_UNBOUND © 2145</p>
+          <p className="text-[10px] text-zinc-700 font-mono">Time Travel_AGENCY © 2145</p>
         </div>
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-900/30 to-transparent" />
       </footer>
@@ -313,7 +313,7 @@ function HomePage({ onExplore, onOpenQuiz }: { onExplore: () => void; onOpenQuiz
       </motion.div>
       
       <h1 className="text-6xl md:text-9xl font-black tracking-tighter leading-none text-white mb-12">
-        <ScrambleText text="CHRONOS" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-white to-violet-500 animate-gradient bg-[length:200%_auto]">UNBOUND</span>
+        <ScrambleText text="Time travel" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-white to-violet-500 animate-gradient bg-[length:200%_auto]">AGENCY</span>
       </h1>
       
       <p className="text-zinc-400 max-w-xl mb-16 font-mono font-light border-l-2 border-cyan-500/30 pl-6 text-left leading-relaxed">

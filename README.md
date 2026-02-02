@@ -39,7 +39,7 @@ Notre architecture repose sur l'alliance de la performance moderne et de l'intel
 ✨ Fonctionnalités Implémentées1. Hero Section Immersive
 1. Une porte d'entrée visuelle monumentale avec un arrière-plan cinématique, invitant l'utilisateur à "briser le mur du temps".
 2. Le Catalogue des Destinations (Cards Interactives) Paris 1889 : L'élégance de la Belle Époque sous un prisme Steampunk. Crétacé : Une immersion sauvage et viscérale à l'aube du monde. Florence 1504 : Le raffinement de la Renaissance italienne capturé dans sa splendeur.
-3. Chronos-Agent (Chatbot IA via Gemini) Grâce à la puissance de Gemini AI Studio, notre agent possède une personnalité propre : érudit, protecteur et passionné. Il ne se contente pas de répondre, il conseille sur les paradoxes temporels et les protocoles de sécurité.
+3. Chronos-Agent (Chatbot IA via Gemini) Grâce à la puissance de Gemini AI Studio, notre agent possède une personnalité propre : érudit, protecteur et passionné. Il ne se contente pas de répondre, il conseille sur les paradoxes temporels et les protocoles de sécurité en fonction de certains mots-clés tels que : "dino" , "art", ect.
 4. Quiz de Recommandation Un algorithme prédictif qui analyse la psychologie de l'utilisateur pour lui proposer sa destination idéale parmi les époques disponibles.
 
 🔗 Livrables Accessibles

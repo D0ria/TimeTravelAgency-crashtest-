@@ -47,7 +47,7 @@ Note : Les liens ci-dessous pointent vers les environnements de production du pr
 
 🌐 Webapp Déployée : https://timetravelagencycrashtest.vercel.app/
 
-📂 Repository GitHub : [INSERER TON LIEN GITHUB ICI]
+📂 Repository GitHub : https://github.com/D0ria/TimeTravelAgency-crashtest-.git
 
 🤖 Documentation IA : L'agent conversationnel a été entraîné sur Gemini AI Studio avec un System Prompt spécifique garantissant une immersion "Zero Paradox".
 

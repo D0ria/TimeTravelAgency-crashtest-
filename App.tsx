@@ -1,40 +1,29 @@
 
-import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import { 
-  Clock, 
-  MapPin, 
-  Calendar, 
-  MessageSquare, 
-  X, 
-  Send, 
-  ChevronRight, 
-  ChevronLeft, 
-  Star, 
-  Info,
-  History,
-  Trees,
-  Palette,
-  ArrowRight,
-  ShieldCheck,
-  Zap,
-  Cpu,
-  Globe,
-  Aperture,
-  Crosshair,
-  Wifi,
+import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
+import {
   Activity,
-  Maximize,
+  Aperture,
+  ArrowRight,
   Binary,
+  Calendar,
+  CheckCircle,
+  ChevronRight,
+  Clock,
+  Cpu,
+  History,
+  Menu,
+  MessageSquare,
+  Send,
+  ShieldCheck,
   ShoppingBag,
   Trash2,
-  CreditCard,
-  CheckCircle,
-  Menu
+  X,
+  Zap
 } from 'lucide-react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { DESTINATIONS } from './constants';
-import { Destination, CartItem, ChatMessage } from './types';
-import { getGeminiResponse } from './services/geminiService';
+import { getChronosResponse } from './services/geminiService';
+import { CartItem, ChatMessage, Destination } from './types';
 
 // --- Text Scramble Effect ---
 const ScrambleText: React.FC<{ text: string; className?: string }> = ({ text, className }) => {
@@ -645,7 +634,7 @@ function ChatWidget({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: (v: boo
     setInput("");
     setIsTyping(true);
     try {
-      const response = await getGeminiResponse(input);
+      const response = await getChronosResponse(input);
       setMessages(prev => [...prev, { role: 'assistant', content: response }]);
     } catch (e) {
       setMessages(prev => [...prev, { role: 'assistant', content: "ERR: Connexion interrompue. Protocoles d'urgence activés." }]);
@@ -678,11 +667,11 @@ function ChatWidget({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: (v: boo
               {isTyping && <div className="text-[9px] font-mono text-cyan-600 animate-pulse pl-1 uppercase tracking-[0.2em]">Computing_Paradox_Resolution...</div>}
             </div>
             <div className="p-4 border-t border-white/5 bg-[#080808] flex gap-3">
-              <input 
-                value={input} 
-                onChange={e => setInput(e.target.value)} 
-                onKeyDown={e => e.key === 'Enter' && handleSend()} 
-                placeholder="AWAITING COMMAND..." 
+              <input
+                value={input}
+                onChange={e => setInput(e.target.value)}
+                onKeyDown={e => e.key === 'Enter' && handleSend()}
+                placeholder="AWAITING COMMAND..."
                 className="flex-1 bg-black border border-zinc-800 px-4 py-3 text-xs font-mono text-white focus:outline-none focus:border-cyan-500 transition-all placeholder:text-zinc-800" 
               />
               <button onClick={handleSend} className="bg-white hover:bg-cyan-500 p-3 transition-all active:scale-95 shadow-lg group">

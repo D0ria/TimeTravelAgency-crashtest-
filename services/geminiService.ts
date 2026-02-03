@@ -1,4 +1,3 @@
-
 import { GoogleGenAI } from "@google/genai";
 
 const systemPrompt = `Tu es CHRONOS, l'intelligence artificielle supérieure de l'agence TimeTravel Agency. 
@@ -65,16 +64,24 @@ function mockAnalyzer(input: string): string {
 }
 
 /**
- * Primary interface for CHRONOS agent using Gemini 3 models.
+ * Primary interface for CHRONOS agent using Gemini models.
+ * Renamed to match App.tsx import requirement.
  */
-// Use property text directly from GenerateContentResponse
-export async function getChronosResponse(userInput: string): Promise<string> {
-  // Initialize right before call to ensure using most current API key
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+export async function getGeminiResponse(userInput: string): Promise<string> {
+  // Correction ici : Utilisation de import.meta.env pour Vite + fallback
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY || "";
+  
+  // Si pas de clé, on passe directement au mock pour éviter le crash
+  if (!apiKey) {
+    console.warn("CHRONOS: Clé API manquante, passage en mode simulation.");
+    return mockAnalyzer(userInput);
+  }
+
+  const ai = new GoogleGenAI({ apiKey });
 
   try {
     const response = await ai.models.generateContent({
-      model: "gemini-3-flash-preview",
+      model: "gemini-2.0-flash", // Modèle stable recommandé
       contents: userInput,
       config: {
         systemInstruction: systemPrompt,
@@ -83,7 +90,6 @@ export async function getChronosResponse(userInput: string): Promise<string> {
       }
     });
 
-    // Extract text output from response.text property
     return response.text || "ERREUR_SYSTEME: Flux de données corrompu. Liaison perdue.";
   } catch (error) {
     console.error("Chronos Link Error:", error);

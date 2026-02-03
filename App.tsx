@@ -22,7 +22,7 @@ import {
 } from 'lucide-react';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { DESTINATIONS } from './constants';
-import { getChronosResponse } from './services/geminiService';
+import { getGeminiResponse } from '.services/geminiService';
 import { CartItem, ChatMessage, Destination } from './types';
 
 // --- Text Scramble Effect ---
@@ -80,17 +80,14 @@ export default function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
-  // Persistent Cart Storage Key
   const STORAGE_KEY = 'chronos_persistence_final_v1';
 
-  // Initialize cart from localStorage
   const [cart, setCart] = useState<CartItem[]>(() => {
     if (typeof window === 'undefined') return [];
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       return saved ? JSON.parse(saved) : [];
     } catch (e) {
-      console.warn("RESTORE_FAILED", e);
       return [];
     }
   });
@@ -98,7 +95,6 @@ export default function App() {
   const { scrollYProgress } = useScroll();
   const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
 
-  // Persist cart on every change
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
   }, [cart]);
@@ -134,7 +130,6 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#020204] text-cyan-50 font-sans selection:bg-cyan-500/30 selection:text-cyan-100 overflow-x-hidden cursor-crosshair">
       
-      {/* Background HUD Layers */}
       <div className="fixed inset-0 pointer-events-none z-[60] opacity-10 bg-[linear-gradient(to_bottom,transparent_50%,rgba(0,0,0,0.5)_51%)] bg-[size:100%_4px]" />
       <motion.div 
         className="fixed inset-0 pointer-events-none z-[60] bg-gradient-to-b from-transparent via-cyan-500/10 to-transparent h-[10vh]"
@@ -151,7 +146,6 @@ export default function App() {
         <motion.div animate={{ scale: [1, 1.1, 1], opacity: [0.1, 0.15, 0.1] }} transition={{ duration: 15, repeat: Infinity }} className="absolute bottom-[-10%] right-[-5%] w-[50vw] h-[50vw] bg-violet-700/10 blur-[120px] rounded-full" />
       </div>
 
-      {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 border-b border-cyan-500/10 bg-[#020204]/80 backdrop-blur-xl">
         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
         
@@ -228,7 +222,6 @@ export default function App() {
         </AnimatePresence>
       </nav>
 
-      {/* Main Content */}
       <main className="relative pt-24 z-10 min-h-screen">
         <AnimatePresence mode="wait">
           {activePage === 'home' && <HomePage key="home" onExplore={() => setActivePage('destinations')} onOpenQuiz={() => setIsQuizOpen(true)} />}
@@ -237,7 +230,6 @@ export default function App() {
         </AnimatePresence>
       </main>
 
-      {/* Footer */}
       <footer className="bg-black border-t border-white/5 py-12 mt-auto relative z-10 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 relative z-10">
           <div className="flex flex-col gap-2">
@@ -258,7 +250,6 @@ export default function App() {
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-900/30 to-transparent" />
       </footer>
 
-      {/* Modals & Widgets */}
       <AnimatePresence>
         {selectedDest && (
           <DestinationModal 
@@ -292,7 +283,6 @@ export default function App() {
   );
 }
 
-// --- Home Page ---
 function HomePage({ onExplore, onOpenQuiz }: { onExplore: () => void; onOpenQuiz: () => void }) {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="px-6 flex flex-col items-center justify-center min-h-[80vh] text-center">
@@ -322,7 +312,6 @@ function HomePage({ onExplore, onOpenQuiz }: { onExplore: () => void; onOpenQuiz
   );
 }
 
-// --- Destinations Page ---
 function DestinationsPage({ onSelect }: { onSelect: (d: Destination) => void }) {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="max-w-7xl mx-auto px-6 py-20">
@@ -355,7 +344,6 @@ function DestinationsPage({ onSelect }: { onSelect: (d: Destination) => void }) 
   );
 }
 
-// --- About Page ---
 function AboutPage() {
   return (
     <div className="max-w-6xl mx-auto px-6 py-20 text-center">
@@ -379,7 +367,6 @@ function AboutPage() {
   );
 }
 
-// --- Destination Modal ---
 function DestinationModal({ dest, onClose, onAddToCart }: { dest: Destination; onClose: () => void; onAddToCart: (d: Destination, dt: string, c: string) => void }) {
   const [step, setStep] = useState(1);
   const [date, setDate] = useState("");
@@ -395,7 +382,6 @@ function DestinationModal({ dest, onClose, onAddToCart }: { dest: Destination; o
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose} className="absolute inset-0 bg-black/98 backdrop-blur-2xl" />
       <motion.div initial={{ scale: 0.95, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.95, opacity: 0 }} className="relative bg-[#050505] w-full max-w-5xl h-[85vh] border border-cyan-900/50 flex flex-col md:row-row overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.8)]">
         <div className="flex flex-col md:flex-row h-full">
-          {/* Visual Side */}
           <div className="w-full md:w-5/12 bg-zinc-900 relative border-r border-white/5">
             <img src={dest.image} className="w-full h-full object-cover opacity-40 grayscale" alt={dest.title} />
             <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent" />
@@ -414,7 +400,6 @@ function DestinationModal({ dest, onClose, onAddToCart }: { dest: Destination; o
             </div>
           </div>
           
-          {/* Controls Side */}
           <div className="w-full md:w-7/12 p-12 flex flex-col bg-black/40 relative">
             <button onClick={onClose} className="absolute top-6 right-6 text-zinc-600 hover:text-white transition-colors p-2"><X size={24} /></button>
             <div className="mb-10">
@@ -471,7 +456,6 @@ function DestinationModal({ dest, onClose, onAddToCart }: { dest: Destination; o
   );
 }
 
-// --- Cart Drawer ---
 function CartDrawer({ isOpen, onClose, cart, onRemove, onCheckout }: { isOpen: boolean; onClose: () => void; cart: CartItem[]; onRemove: (id: string) => void; onCheckout: () => void }) {
   const total = useMemo(() => cart.reduce((acc, item) => acc + item.price, 0), [cart]);
 
@@ -528,7 +512,6 @@ function CartDrawer({ isOpen, onClose, cart, onRemove, onCheckout }: { isOpen: b
             >
               <div className="absolute top-0 left-0 w-1 h-full bg-cyan-600 shadow-[0_0_15px_#06b6d4]" />
               
-              {/* Thumbnail */}
               <div className="w-20 h-20 bg-zinc-800 overflow-hidden border border-white/5 flex-shrink-0">
                 <img src={item.image} className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500" alt={item.title} />
               </div>
@@ -580,7 +563,6 @@ function CartDrawer({ isOpen, onClose, cart, onRemove, onCheckout }: { isOpen: b
   );
 }
 
-// --- Quiz Component ---
 function RecommendationQuiz({ onClose, onRecommend }: { onClose: () => void; onRecommend: (d: Destination) => void }) {
   const [step, setStep] = useState(0);
   const questions = [
@@ -616,7 +598,6 @@ function RecommendationQuiz({ onClose, onRecommend }: { onClose: () => void; onR
   );
 }
 
-// --- Chat Widget ---
 function ChatWidget({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: (v: boolean) => void }) {
   const [messages, setMessages] = useState<ChatMessage[]>([{ role: 'assistant', content: "SYS_MSG: Neural Link Established. Awaiting Input." }]);
   const [input, setInput] = useState("");
@@ -634,7 +615,7 @@ function ChatWidget({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: (v: boo
     setInput("");
     setIsTyping(true);
     try {
-      const response = await getChronosResponse(input);
+      const response = await getGeminiResponse(input);
       setMessages(prev => [...prev, { role: 'assistant', content: response }]);
     } catch (e) {
       setMessages(prev => [...prev, { role: 'assistant', content: "ERR: Connexion interrompue. Protocoles d'urgence activés." }]);

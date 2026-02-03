@@ -3,13 +3,13 @@ export interface Destination {
   id: string;
   title: string;
   period: string;
-  coords: string;
+  price: number;
+  image: string;
   description: string;
   longDescription: string;
-  image: string;
-  color: string;
-  price: number;
   tags: string[];
+  coords: string;
+  color: string;
   features: string[];
 }
 

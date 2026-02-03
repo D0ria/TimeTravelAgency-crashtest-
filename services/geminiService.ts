@@ -28,39 +28,15 @@ Directives de navigation :
 Ton langage doit inclure : "Vecteur temporel", "Flux de données", "Désynchronisation", "Séquençage", "Liaison montante", "Paradoxe", "Stabilité du flux".
 Tes réponses doivent être en Français, courtes et percutantes.`;
 
-export async function getChronosResponse(userInput: string): Promise<string> {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-  
-  if (!process.env.API_KEY) {
-    return mockAnalyzer(userInput);
-  }
-
-  try {
-    const response = await ai.models.generateContent({
-      model: "gemini-3-flash-preview",
-      contents: userInput,
-      config: {
-        systemInstruction: systemPrompt,
-        temperature: 0.8,
-        topP: 0.95,
-      }
-    });
-
-    return response.text || "ERREUR_SYSTEME: Flux de données corrompu. Liaison perdue.";
-  } catch (error) {
-    console.error("Chronos Link Error:", error);
-    return mockAnalyzer(userInput);
-  }
-}
-
+/**
+ * Analyzes user input and returns a simulated response if API call fails.
+ */
 function mockAnalyzer(input: string): string {
   const low = input.toLowerCase();
   
-  // Generic travel phrases
   if (low.includes('voyager') || low.includes('partir') || low.includes('vacances') || low.includes('voyage'))
     return "CHRONOS: Liaison montante active. Spécifiez votre zone d'intérêt : ARCHIVES_PASSE (Art, Dinos, Égypte) ou VECTEURS_FUTUR (Mars, Tokyo). Le continuum est vaste.";
 
-  // Specific keywords
   if (low.includes('art') || low.includes('vinci') || low.includes('florence') || low.includes('peinture')) 
     return "CHRONOS: Analyse spectrale terminée. Vecteur FLORENCE_CORE recommandé. L'atelier de Da Vinci présente une signature artistique de 98%. Liaison stable.";
   
@@ -86,4 +62,31 @@ function mockAnalyzer(input: string): string {
     return "CHRONOS: Vecteur GIZEH_GENESIS. Construction de la Grande Pyramide en cours. Chaleur extrême détectée. Hydratation critique.";
 
   return "CHRONOS: Signal reçu mais fragmenté. Entrez un mot-clé valide (Art, Dino, Futur, Mars, Atlantis...) pour stabiliser la liaison temporelle.";
+}
+
+/**
+ * Primary interface for CHRONOS agent using Gemini 3 models.
+ */
+// Use property text directly from GenerateContentResponse
+export async function getChronosResponse(userInput: string): Promise<string> {
+  // Initialize right before call to ensure using most current API key
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+
+  try {
+    const response = await ai.models.generateContent({
+      model: "gemini-3-flash-preview",
+      contents: userInput,
+      config: {
+        systemInstruction: systemPrompt,
+        temperature: 0.8,
+        topP: 0.95,
+      }
+    });
+
+    // Extract text output from response.text property
+    return response.text || "ERREUR_SYSTEME: Flux de données corrompu. Liaison perdue.";
+  } catch (error) {
+    console.error("Chronos Link Error:", error);
+    return mockAnalyzer(userInput);
+  }
 }

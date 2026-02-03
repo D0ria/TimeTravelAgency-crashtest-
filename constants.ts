@@ -1,0 +1,135 @@
+
+import { Destination } from './types';
+
+export const DESTINATIONS: Destination[] = [
+  {
+    id: 'paris-1889',
+    title: 'PARIS_1889',
+    period: 'EPOQUE_BELLE',
+    coords: "48.8584° N, 2.2945° E",
+    description: "L'aube de l'industrie moderne. Assistez à l'activation de la Tour Eiffel.",
+    longDescription: "Séquence temporelle chargée. Plongez dans le Paris de la fin du XIXe siècle. Promenez-vous sur le Champ-de-Mars, admirez les pavillons de l'Exposition Universelle et soyez parmi les premiers à monter dans la Tour Eiffel.",
+    image: "https://images.unsplash.com/photo-1509439581779-6298f75bf6e5?auto=format&fit=crop&q=80&w=1200", 
+    color: "cyan",
+    price: 4500,
+    tags: ["romantique", "industrie", "ville", "culture"],
+    features: ["Accès VIP Exposition", "Protocole Jules Verne", "Rencontre G. Eiffel"]
+  },
+  {
+    id: 'cretaceous',
+    title: 'SECTEUR_CRETACE',
+    period: 'T_MINUS_65M',
+    coords: "PANGEA_SECTOR_7",
+    description: "Environnement hostile classe 4. Observation sécurisée de la mégafaune.",
+    longDescription: "Pour les amateurs d'adrénaline et de nature brute. Notre dôme de protection invisible vous permet d'observer les T-Rex et les troupeaux de Tricératops en toute sécurité.",
+    image: "https://i.imgur.com/WR7fY8I.png", 
+    color: "emerald",
+    price: 8200,
+    tags: ["nature", "aventure", "danger", "animaux", "dino"],
+    features: ["Gyrosphère Furtive", "Scan Bioluminescent", "Données Paléontologiques"]
+  },
+  {
+    id: 'florence-1504',
+    title: 'FLORENCE_CORE',
+    period: 'RENAISSANCE_V1',
+    coords: "43.7696° N, 11.2558° E",
+    description: "Le berceau du code culturel humain. Interfacez-vous avec Da Vinci.",
+    longDescription: "Marchez dans les rues pavées de Florence aux côtés des plus grands génies de l'humanité. Assistez à la création du David de Michel-Ange ou à l'achèvement de la Joconde.",
+    image: "https://i.imgur.com/3qDHm1g.png", 
+    color: "violet",
+    price: 6000,
+    tags: ["art", "histoire", "calme", "culture"],
+    features: ["Accès Atelier Da Vinci", "Cryptage Médicis", "Upload Philosophique"]
+  },
+  {
+    id: 'giza-2560bc',
+    title: 'GIZEH_GENESIS',
+    period: 'DYNASTIE_IV',
+    coords: "29.9792° N, 31.1342° E",
+    description: "Observez la pose de la dernière pierre de la Grande Pyramide.",
+    longDescription: "Remontez aux origines de la civilisation. Assistez à l'incroyable chantier de la pyramide de Khéops sous le soleil d'Égypte.",
+    image: "https://images.unsplash.com/photo-1539650116574-8efeb43e2750?auto=format&fit=crop&q=80&w=1200", 
+    color: "amber",
+    price: 7500,
+    tags: ["chaleur", "histoire", "monument", "mystère"],
+    features: ["Croisière Solaire", "Audience Pharaonique", "Décodage Hiéroglyphe"]
+  },
+ {
+    id: 'atlantis-v2',
+    title: 'AQUATIC_PROTO',
+    period: 'PRE_CATACLYSME',
+    coords: "31.0000° N, 29.0000° W",
+    description: "La cité perdue sous son dôme de cristal. Technologie bio-luminescente.",
+    longDescription: "Découvrez Atlantis avant sa submersion finale. Une civilisation hybride mêlant architecture organique et énergie géothermique pure. Naviguez dans les canaux de corail et apprenez les secrets de la maîtrise de l'eau. Une expérience onirique et silencieuse.",
+    image: "https://images.unsplash.com/photo-1551244072-5d12893278ab?auto=format&fit=crop&q=80&w=1200",
+    color: "blue",
+    price: 12500,
+    tags: ["eau", "mystère", "tech", "calme"],
+    features: ["Respiration Liquide", "Visite des Jardins d'Ambre", "Archives de Poséidon"]
+  },
+  {
+    id: 'kyoto-1603',
+    title: 'EDO_SILENCE',
+    period: 'SHOGUNAT_EARLY',
+    coords: "35.0116° N, 135.7681° E",
+    description: "Le Japon médiéval dans toute sa splendeur. Honneur et cerisiers.",
+    longDescription: "Plongez dans l'élégance austère du début de l'ère Edo. Rencontrez des maîtres de sabre, participez à une cérémonie du thé codifiée et dormez dans un temple millénaire. Une retraite spirituelle dans un monde régi par le code du Bushido.",
+    image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&q=80&w=1200",
+    color: "rose",
+    price: 6800,
+    tags: ["zen", "combat", "histoire", "japon"],
+    features: ["Initiation Katana", "Cérémonie Lunaire", "Passage Porte de Torii"]
+  },
+  {
+    id: 'london-1851',
+    title: 'VICTORIA_STEAM',
+    period: 'GREAT_EXHIBITION',
+    coords: "51.5074° N, 0.1278° W",
+    description: "L'empire de la vapeur et du charbon. Le Crystal Palace en fête.",
+    longDescription: "Entrez dans l'ère victorienne à son apogée. Visitez l'Exposition Universelle au Crystal Palace, croisez Charles Dickens ou explorez les docks de Londres baignés dans le brouillard et la vapeur de charbon. Un monde de contrastes entre élégance aristocratique et révolution industrielle.",
+    image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&q=80&w=1200",
+    color: "zinc",
+    price: 5100,
+    tags: ["steam", "histoire", "ville", "industrie"],
+    features: ["Bal à Buckingham", "Tour en Omnibus à Vapeur", "Visite Crystal Palace"]
+  },
+  {
+    id: 'mars-2085',
+    title: 'RED_HORIZON',
+    period: 'COLONY_ALPHA',
+    coords: "18.6500° N, 226.2000° E",
+    description: "La première ville sur Mars. Dômes géodésiques et poussière rouge.",
+    longDescription: "Vivez l'expérience pionnière de la colonisation martienne. Explorez Valles Marineris, travaillez dans les fermes hydroponiques et admirez le coucher de soleil bleu de la planète rouge. Un avant-goût du destin spatial de l'humanité.",
+    image: "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&q=80&w=1200",
+    color: "orange",
+    price: 15000,
+    tags: ["espace", "futur", "aventure", "science"],
+    features: ["Sortie EVA Valles", "Dîner Hydroponique", "Scan Géologique"]
+  },
+  {
+    id: 'ny-1920',
+    title: 'NY_ROARING',
+    period: 'JAZZ_ERA_V1',
+    coords: "40.7128° N, 74.0060° W",
+    description: "Jazz, gratte-ciels et prohibition. L'énergie brute du Nouveau Monde.",
+    longDescription: "Vivez la frénésie des années folles. Des clubs de jazz secrets de Harlem aux sommets des premiers gratte-ciels.",
+    image: "https://images.unsplash.com/photo-1534430480872-3498386e7856?auto=format&fit=crop&q=80&w=1200", 
+    color: "rose",
+    price: 5200,
+    tags: ["fête", "musique", "ville", "nocturne"],
+    features: ["Pass Speakeasy", "Vol en Biplan", "Concert Privé Armstrong"]
+  },
+  {
+    id: 'tokyo-2150',
+    title: 'NEO_TOKYO',
+    period: 'CYBER_ERA',
+    coords: "35.6762° N, 139.6503° E",
+    description: "Un saut vers le futur probable. Néons, pluie et implants cybernétiques.",
+    longDescription: "Explorez une mégalopole verticale où la technologie a fusionné avec l'humain. Goûtez à la cuisine synthétique de rue.",
+    image: "https://img.freepik.com/free-photo/illustration-rain-futuristic-city_23-2151406579.jpg", 
+    color: "blue",
+    price: 9900,
+    tags: ["futur", "tech", "néon", "nuit"],
+    features: ["Implant Traducteur", "Course Moto-Jet", "Dîner Orbital"]
+  }
+];

@@ -22,7 +22,7 @@ import {
 } from 'lucide-react';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { DESTINATIONS } from './constants';
-import { getGeminiResponse } from '.services/geminiService';
+import { getGeminiResponse } from "./services/geminiService";
 import { CartItem, ChatMessage, Destination } from './types';
 
 // --- Text Scramble Effect ---
